@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL to XORM Converter</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script defer src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script defer src="app.js"></script>
+    <link ref="icon">
+    <style>
+        body {
+            background-color: #f5f5f5;
+        }
+        .container {
+            margin-top: 20px;
+        }
+        .textarea, .output {
+            height: 500px;
+            resize: none;
+        }
+        .output {
+            background-color: #fff;
+            border: 1px solid #ddd;
+        }
+        .header {
+            color: white;
+            padding: 20px;
+            color: gray;
+        }
+        .description {
+            margin: 20px 0;
+            text-align: center;
+        }
+        .content-container {
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div style="height: 50px; width: 100%; background-color:  #809680">
+
+    </div>
+    <div class="header">
+        <p class="title">SQL to XORM Converter</p>
+        <p>This tool converts mysql create statements into Go type definitions.</p>
+        <p>Other SQL expressions are ignored.</p>
+        <p>Paste a create statement on the left and the equivalent Go type will be generated on the right,</p>
+        <p>which you can paste into your program. The script has to make some assumptions,</p>
+        <p>so check the output carefully!</p>
+    </div>
+    <div class="description">
+
+    </div>
+    <div class="container" style="max-width: 100%;width: 100%">
+        <div class="content-container">
+            <div class="column" style="width: 50%">
+                <div class="field">
+<!--                    <label class="label" style="background-color: #809680"></label>-->
+                    <div class="control">
+                        <textarea class="textarea" v-model="sqlInput" placeholder="Enter SQL create table statement" @blur="convertSQL" ref="sqlTextarea"></textarea>
+                    </div>
+                </div>
+            </div>
+            <span style="margin-top: 10px; font-size: 20px; color: #809680"> → </span>
+            <div class="column" style="width: 50%">
+                <div class="output" style="background-color: #f5f5f5">
+                    <pre>{{ structOutput }}</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="color: gray; text-align: center">
+        github:<a href="https://github.com/jeffcail/sql2xorm" target="_blank">sql2xorm</a>
+    </div>
+    <div style="color: gray; text-align: center">浙ICP备2021035698号-2</div>
+</div>
+</body>
+</html>
